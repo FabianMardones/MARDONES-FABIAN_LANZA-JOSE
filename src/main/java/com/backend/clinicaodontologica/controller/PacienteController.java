@@ -54,7 +54,7 @@ public class PacienteController {
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Paciente no encontrado",
                     content = @Content),
-            @ApiResponse(responseCode = "500", description = "UServer error",
+            @ApiResponse(responseCode = "500", description = "Server error",
                     content = @Content)
     })
     @PutMapping("/actualizarPacientes")

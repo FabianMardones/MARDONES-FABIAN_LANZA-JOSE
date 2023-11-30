@@ -106,7 +106,7 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoSalidaDto actualizarTurno(TurnoModificacionEntradaDto turnoModificacion) {
+    public TurnoSalidaDto actualizarTurno(TurnoModificacionEntradaDto turnoModificacion) throws ResourceNotFoundException{
         validarFechaYhoraTurno(turnoModificacion.getFechaYHora());
         Long idTurno = turnoModificacion.getId();
 
@@ -123,6 +123,7 @@ public class TurnoService implements ITurnoService {
                     turnoExistente.setPaciente(pacienteExistente);
                 } else {
                     LOGGER.error("Paciente con DNI {} no encontrado, no se actualizó.", turnoModificacion.getDni());
+                    throw new ResourceNotFoundException("Paciente con DNI {} no encontrado, no se actualizó.");
                 }
             }
 
@@ -132,6 +133,7 @@ public class TurnoService implements ITurnoService {
                     turnoExistente.setOdontologo(odontologoExistente);
                 } else {
                     LOGGER.error("Odontólogo con Matrícula {} no encontrado, no se actualizó.", turnoModificacion.getMatricula());
+                    throw new ResourceNotFoundException("dontólogo con Matrícula {} no encontrado, no se actualizó.");
                 }
             }
 
